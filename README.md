@@ -37,14 +37,14 @@ ai-research-agent/\
       venv\Scripts\activate \
     macOS/Linux \
       python3 -m venv venv \
-      source venv/bin/activate \
+      source venv/bin/activate 
 
   4. Install dependencies\
-      pip install -r requirements.txt\
+      pip install -r requirements.txt
 
   5. Environment setup\
       Create a .env file in the project root with your OpenAI API key\
-      OPENAI_API_KEY=sk-your-openai-api-key\
+      OPENAI_API_KEY=sk-your-openai-api-key
 
   6. Run the Agent\
       a. In terminal run : python main.py\
