@@ -15,13 +15,13 @@ Built and tested in Google Colab.
 
 # Project Structure
 
-ai-research-agent/
-│
-├── main.py # Core agent logic
-├── tools.py # Search and other helper tools
-├── requirements.txt # Python dependencies
-├── .env # Environment file (excluded from git)
-├── README.md # Project documentation
+ai-research-agent/\
+│\
+├── main.py # Core agent logic\
+├── tools.py # Search and other helper tools\
+├── requirements.txt # Python dependencies\
+├── .env # Environment file (excluded from git)\
+├── README.md # Project documentation\
 └── .gitignore # Excludes venvs, .env, caches, etc.
 
 # Setup Instructions
