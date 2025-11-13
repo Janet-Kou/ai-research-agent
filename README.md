@@ -31,24 +31,24 @@ ai-research-agent/\
   cd ai-research-agent
   )
 
-  2. Create and activate a virtual environment
-    Windows:
-      python -m venv venv
-      venv\Scripts\activate
-    macOS/Linux
-      python3 -m venv venv
-      source venv/bin/activate
+  2. Create and activate a virtual environment\
+    Windows:\
+      python -m venv venv \
+      venv\Scripts\activate \
+    macOS/Linux \
+      python3 -m venv venv \
+      source venv/bin/activate \
 
-  3. Install dependencies
-      pip install -r requirements.txt
+  4. Install dependencies\
+      pip install -r requirements.txt\
 
-  4. Environment setup
-      Create a .env file in the project root with your OpenAI API key
-      OPENAI_API_KEY=sk-your-openai-api-key
+  5. Environment setup\
+      Create a .env file in the project root with your OpenAI API key\
+      OPENAI_API_KEY=sk-your-openai-api-key\
 
-  5. Run the Agent
-      a. In terminal run : python main.py
-      b. You will be prompted with "What can I help you research?"
+  6. Run the Agent\
+      a. In terminal run : python main.py\
+      b. You will be prompted with "What can I help you research?"\
       c. Type what you would like to research and hit enter. Optionally, you can request that the information is saved to a file. The agent will create a new file in your directory with the researched infromation.
 
 # Author
