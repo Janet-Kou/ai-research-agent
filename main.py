@@ -8,27 +8,26 @@ from tools import search_tool, wiki_tool, save_tool
 
 load_dotenv()
 
-#Set up Prompt Template
-
 class ResearchResponse(BaseModel):
-    topic: str                  # generate a topic that is of type str
-    summary: str                # generate summary that is of type str
-    sources: list[str]          # generate a list of string sources
-    tools_used: list[str]       # tools used
+    topic: str
+    summary: str
+    sources: list[str]
+    tools_used: list[str]
 
 llm = ChatOpenAI(model="gpt-4")
-
-parser = PydanticOutputParser(pydantic_object=ResearchResponse)  # Allows us to take output of llm and parse is into the model to use as a regular python object
+parser = PydanticOutputParser(pydantic_object=ResearchResponse)
 
 prompt = ChatPromptTemplate.from_messages(
     [
         (
-            "system",  #info to the llm that tells it what is is supposed to so
+            "system",
             """
-            You are a research assistanct that will help gereate a research paper.
-            Answer the user query and use neccessary tools.
+            You are a research assistant that will help generate a research paper.
+            Answer the user query and use necessary tools.
             Format the JSON keys in all lowercase snake_case.
             Wrap the output in this format and provide no other text\n{format_instructions}
+            IMPORTANT: Only use save_text_to_file tool when the user explicitly says "save" or "save to file".
+            NEVER automatically save the research results.
             """,
         ),
         ("placeholder", "{chat_history}"),
@@ -43,14 +42,42 @@ agent = create_tool_calling_agent(
     prompt=prompt,
     tools=tools
 )
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
+def format_research_output(topic: str, summary: str, sources: list, tools_used: list) -> str:
+  """Format the research output in a standard, readable format."""
+  output = f"Topic: {topic}\n\n"
+  output += f"{summary}\n\n"
+  output += "Sources:\n"
+  for source in sources:
+    output += f"- {source}\n"
+  output += f"\nTools used: {', '.join(tools_used)}"
+  return output
+
+def format_for_saving(topic: str, summary: str) -> str:
+  """Format for research input used only when saving to a file. Excludes sources and tools."""
+  return f"Topic: {topic}\n\n{summary}"
 
 query = input("What can I help you research? ")
-raw_response = agent_executor.invoke({"query": query}) # must invoke with prompt variable "query." "chat_history" and "agent_scartch[ad are added automatically by agent_executor"
+raw_response = agent_executor.invoke({"query": query})
 
 try:
   structured_response = parser.parse(raw_response.get("output"))
-  print(structured_response)
+
+  print("\n" + "="*60)
+  formatted_output = format_research_output(
+      topic=structured_response.topic,
+      summary=structured_response.summary,
+      sources=structured_response.sources,
+      tools_used=structured_response.tools_used
+  )
+  print(formatted_output)
+  print("="*60)
+
+  save_choice = input("\nDo you want to save this research to a file? (y/n): ")
+  if save_choice.lower() in ['y','yes']:
+    save_result = save_tool.func(format_for_saving(structured_response.topic, structured_response.summary))
+    print("Your result has been saved to research_output.txt in the current directory.")
 except Exception as e:
-  print("Error Parsing Respose: ", e, "Raw Response: ", raw_response)
+  print("Error Parsing Response: ", e)
+  print("Raw Response: ", raw_response)

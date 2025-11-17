@@ -3,7 +3,7 @@
 
 This is a proof of concept research assistant utilizing Langchain and OpenAI's GPT-4 model, based on the TechWithTim AI Agent Tutorial.
 The agent uses tool-calling agent to search the web (via DuckDuckGo) and Wikipedia.
-If requested, the agent will store the summarized research in structed form to a newly created file in the current directory
+If requested, the agent will store the summarized research in structured form to a newly created file in the current directory
 Built and tested in Google Colab.
 
 # Features
@@ -15,17 +15,17 @@ Built and tested in Google Colab.
 
 # Project Structure
 
-ai-research-agent/\
-│\
-├── main.py # Core agent logic\
-├── tools.py # Search and other helper tools\
-├── requirements.txt # Python dependencies\
-├── .env # Environment file (excluded from git)\
-├── README.md # Project documentation\
-└── .gitignore # Excludes venvs, .env, caches, etc.
+ai-research-agent/
+│
+├── main.py
+├── tools.py 
+├── requirements.txt 
+├── .env 
+├── README.md 
+└── .gitignore 
 
 # Setup Instructions
-  1. Clone the repository 
+  1. Clone the repository
   (```bash
   git clone https://github.com/Janet-Kou/ai-research-agent.git
   cd ai-research-agent
@@ -46,10 +46,11 @@ ai-research-agent/\
       Create a .env file in the project root with your OpenAI API key\
       OPENAI_API_KEY=sk-your-openai-api-key
 
-  6. Run the Agent\
-      a. In terminal run : python main.py\
-      b. You will be prompted with "What can I help you research?"\
-      c. Type what you would like to research and hit enter. Optionally, you can request that the information is saved to a file. The agent will create a new file in your directory with the researched infromation.
+  5. Run the Agent
+      a. In terminal run : python main.py
+      b. You will be prompted with "What can I help you research?"
+      c. Type what you would like to research and hit enter.
+      d. You can choose to have the information is saved to a file. A new file containing the researched information will be created in the directory.
 
 # Author
 GitHub: Janet-Kou
