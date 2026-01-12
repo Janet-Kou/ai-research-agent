@@ -16,12 +16,19 @@ Built and tested in Google Colab.
 # Project Structure
 
 ai-research-agent/
+
 │
+
 ├── main.py
+
 ├── tools.py 
+
 ├── requirements.txt 
+
 ├── .env 
+
 ├── README.md 
+
 └── .gitignore 
 
 # Setup Instructions
