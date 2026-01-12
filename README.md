@@ -55,13 +55,13 @@ ai-research-agent/
 
   5. Run the Agent
 
-     a. In terminal run : python main.py
+     1. In terminal run : python main.py
 
-     b. You will be prompted with "What can I help you research?"
+     2. You will be prompted with "What can I help you research?"
 
-     c. Type what you would like to research and hit enter.
+     3. Type what you would like to research and hit enter.
 
-     d. You can choose to have the information is saved to a file. A new file containing the researched information will be created in the directory.
+     4. You can choose to have the information is saved to a file. A new file containing the researched information will be created in the directory.
 
 # Author
 GitHub: Janet-Kou
